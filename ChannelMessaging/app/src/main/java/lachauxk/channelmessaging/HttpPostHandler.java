@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class HttpPostHandler extends AsyncTask<PostRequest, Void, String>{
 
+    private ArrayList<OnDownloadListener> oDLList = new ArrayList<OnDownloadListener>();
 
     public String performPostCall(String requestURL, HashMap<String, String> postDataParams) {
         URL url;
@@ -76,4 +78,15 @@ public class HttpPostHandler extends AsyncTask<PostRequest, Void, String>{
     }
 
 
+    public void addOnDownloadListener(OnDownloadListener onDownloadListener) {
+        oDLList.add(onDownloadListener);
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        //super.onPostExecute(s);
+        for(OnDownloadListener listener:oDLList){
+            listener.OnDownloadComplete(s);
+        }
+    }
 }

@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnDownloadListener {
 
     private Button btnSubmit;
     private EditText edxLogin;
@@ -38,6 +39,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         infosConnexion.put("","");
         HttpPostHandler httpPostHandler = new HttpPostHandler();
         httpPostHandler.addOnDownloadListener(this);
-        httpPostHandler.execute(new PostRequest());
+        httpPostHandler.execute(new PostRequest("http://raphaelbischof.fr/messaging/",infosConnexion));
+    }
+
+    @Override
+    public void OnDownloadComplete(String downloadedContent) {
+        Toast.makeText(getApplicationContext(), downloadedContent, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDownloadError(String downloadedContent) {
+
     }
 }

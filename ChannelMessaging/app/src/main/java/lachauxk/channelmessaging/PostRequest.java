@@ -10,10 +10,10 @@ public class PostRequest {
     String url ="";
     HashMap<String, String> postParams;
 
-    public PostRequest(String _url, String _postParams)
+    public PostRequest(String _url, HashMap<String, String> _postParams)
     {
         url = _url;
-
+        postParams = _postParams;
 
     }
 }

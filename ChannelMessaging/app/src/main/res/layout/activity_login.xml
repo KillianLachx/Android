@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Identifiant"
+            android:hint="Identifiant"
             android:ems="10"
             android:id="@+id/edxLogin"
             android:layout_above="@+id/editText"
@@ -56,8 +56,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_alignBottom="@+id/edxPassword"
+        android:id="@+id/edxPassword"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_weight="1"/>

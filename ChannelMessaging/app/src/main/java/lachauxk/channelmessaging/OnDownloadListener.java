@@ -1,5 +1,7 @@
 package lachauxk.channelmessaging;
 
+import android.view.View;
+
 /**
  * Created by lachauxk on 19/01/2018.
  */
