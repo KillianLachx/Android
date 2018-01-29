@@ -14,6 +14,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnSubmit;
     private EditText edxLogin;
     private EditText edxPassword;
+    private ConnectResponse logAns = new ConnectResponse();
+    private Gson gson
 
     private String stLogin;
     private String stPassword;
@@ -36,10 +38,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         HashMap<String, String> infosConnexion = new HashMap<String, String>();
-        infosConnexion.put("","");
+        //infosConnexion.put("{\"username\":"+"\""+stLogin+"\"","password\":"+"\""+stPassword+"\"}");
+        infosConnexion.put("username", edxLogin.getText().toString());
+        infosConnexion.put("password", edxPassword.getText().toString());
         HttpPostHandler httpPostHandler = new HttpPostHandler();
         httpPostHandler.addOnDownloadListener(this);
-        httpPostHandler.execute(new PostRequest("http://raphaelbischof.fr/messaging/",infosConnexion));
+        httpPostHandler.execute(new PostRequest("http://raphaelbischof.fr/messaging/?function=connect",infosConnexion));
     }
 
     @Override
