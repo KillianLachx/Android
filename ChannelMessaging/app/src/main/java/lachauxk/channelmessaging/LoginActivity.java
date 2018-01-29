@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnDownloadListener {
@@ -15,7 +18,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText edxLogin;
     private EditText edxPassword;
     private ConnectResponse logAns = new ConnectResponse();
-    private Gson gson
+    private Gson gson = new Gson();
+    private UserDatas currentUser = new UserDatas();
 
     private String stLogin;
     private String stPassword;
@@ -48,7 +52,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void OnDownloadComplete(String downloadedContent) {
-        Toast.makeText(getApplicationContext(), downloadedContent, Toast.LENGTH_SHORT).show();
+        logAns = gson.fromJson(downloadedContent, ConnectResponse.class);
+        currentUser.setToken(logAns.getToken());
+
+        Toast.makeText(getApplicationContext(), currentUser.getToken(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

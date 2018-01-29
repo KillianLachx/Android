@@ -6,9 +6,13 @@ package lachauxk.channelmessaging;
 public class ConnectResponse {
     private String response;
     private int code;
-    private String accesstoken;
+    public String accesstoken;
 
     public ConnectResponse(){
         //Ceci n'est pas un constructeur
+    }
+
+    public String getToken(){
+        return accesstoken;
     }
 }
