@@ -1,5 +1,7 @@
 package lachauxk.channelmessaging;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private String stLogin;
     private String stPassword;
+
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +57,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void OnDownloadComplete(String downloadedContent) {
         logAns = gson.fromJson(downloadedContent, ConnectResponse.class);
-        currentUser.setToken(logAns.getToken());
 
-        Toast.makeText(getApplicationContext(), currentUser.getToken(), Toast.LENGTH_SHORT).show();
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, 0).edit();
+
+
+        if (logAns.getToken() != null){
+            Intent intent = new Intent(this, ChannelActivity.class);
+            editor.putString("channelmessaging_accesstoken", logAns.getToken());
+            editor.apply();
+            Toast.makeText(getApplicationContext(), currentUser.getToken(), Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+
+        }
+        else
+            Toast.makeText(getApplicationContext(), "Erreur de connexion : ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
