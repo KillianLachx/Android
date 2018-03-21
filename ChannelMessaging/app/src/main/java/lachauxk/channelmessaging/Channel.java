@@ -13,6 +13,6 @@ public class Channel {
     }
 
     public String ToString(){
-        return "Channel : "+ channelID+"\n";
+        return "Channel : "+ channelID+"\n" + "Connected users :"+ connectedusers + "\n";
     }
 }

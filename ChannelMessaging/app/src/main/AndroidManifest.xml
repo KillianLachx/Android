@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChannelActivity"></activity>
+        <activity android:name=".ChannelActivity" />
+        <activity android:name=".MsgActivity"></activity>
     </application>
 
 </manifest>
